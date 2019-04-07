@@ -1,0 +1,48 @@
+{% extends 'cloneapp/base.html'%}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'cloneapp/anothercss.css' %}">
+{% endblock %}
+{% block a %}
+<div class="jumbotron jumbotron-fluid">
+  <h3 class="sign display-4">{{ question.question_title }}</h3>
+  <div class="media border p-3">
+    <a href="{% url 'cloneapp:userinfo' pk=question.author.pk %}"><img src="{{ question.author.image_field.url }}" alt="{{question.author.image_field.url }}"  class="mr-3 mt-3 rounded-circle" style="width:60px;"></a>
+   <div class="media-body">
+   <h4>{{ question.author.user.username }} <small><i>Posted on {{ question.publish_date|date:"D,d M, Y"}}</i></small></h4>
+   {% if user.is_authenticated and user == question.author.user_p %}
+   {% if not question.published %}
+   <a href="{% url "cloneapp:publish_question" pk=question.pk %}"><i class="fas fa-check-double"></i></a>
+   {% endif %}
+   <a href="{% url "cloneapp:delete_question" pk=question.pk %}"><i class="fas fa-trash"></i></a>
+   {% endif %}
+  </div>
+</div>
+</div>
+  {% for com in comments %}
+  <div class="jumbotron">
+   <div class="media border p-3">
+     <div class="media-body">
+       <h3>@{{ com.author_ans.user_p.username }}:</h3>
+       <p>{{ com.title_ans }}</p>
+       {% if user.is_authenticated and user == com.author_ans.user_p %}
+       <a href="{% url "cloneapp:delete_answer" pk=com.pk %}"><i class="fas fa-trash"></i></a>
+       {% endif %}
+     </div>
+      <a href="{% url 'cloneapp:userinfo' pk=com.author_ans.pk%}"><img src="{{ com.author_ans.image_field.url }}" alt="{{ com.author_ans.user_p.username }}" class="mr-3 mt-3 rounded-circle" style="width:60px;"></a>
+   </div>
+   </div>
+  {% endfor %}
+
+{% if user.is_authenticated %}
+<form class="form-user"  method="POST">
+  {% csrf_token %}
+<div class="form-group">
+  <input id="answero" type="text" name="answerone" placeholder="Your answer">
+  </div>
+<input id="submit_form"class="btn btn-outline-primary" type="submit" name="" value="Answer">
+<br>
+</form>
+{% endif %}
+
+{% endblock %}

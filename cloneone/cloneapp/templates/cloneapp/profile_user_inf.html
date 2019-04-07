@@ -1,0 +1,24 @@
+{% extends 'cloneapp/base.html'%}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'cloneapp/anothercss.css'%}">
+{% endblock %}
+{% block a %}
+<div class="wq">
+  <div class="card" style="width:400px; margin:100px auto;">
+     <img class="card-img-top" src="{{ model.image_field.url }}" alt="userimage">
+     <div class="card-body">
+       <h3 class="card-title">{{ model.user_p.username}}</h3>
+       {% if model.studies %}
+       <p class="card-text">Studied at {{model.studies}}</p>
+       {% endif %}
+       {% if model.home %}
+       <p class="card-text"> Lived at {{model.home}}</p>
+       {% endif %}
+       {% if model.work %}
+       <p class="card-text "> Work at {{model.work}}</p>
+       {% endif %}
+     </div>
+  </div>
+</div>
+{% endblock %}

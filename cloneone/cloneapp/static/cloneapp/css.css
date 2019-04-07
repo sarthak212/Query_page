@@ -1,0 +1,19 @@
+body {
+  background: url("images/frontpage.jpg") no-repeat;
+  background-repeat: no-repeat;
+}
+h2{
+  font-family: 'Merienda', cursive;
+  text-align: center;
+}
+.sign{
+  font-family: 'Josefin Sans', sans-serif;
+}
+.centre{
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  margin: auto;
+}
+.container{
+  margin-top: 100px;
+}

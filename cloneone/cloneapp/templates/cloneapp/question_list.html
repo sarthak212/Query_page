@@ -1,0 +1,52 @@
+{% extends 'cloneapp/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'cloneapp/anothercss.css' %}">
+{% endblock %}
+{% block a %}
+{% if not user.is_authenticated %}
+<div class="jumbotron jumbotron-fluid jumbo">
+  <div class="container">
+    <h1>Starhack</h1>
+    <p>Get knowlege from everywhere..</p>
+    <form class="form-user" action="{% url 'cloneapp:login' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username"class="form-control" placeholder="xyz123">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" class="form-control">
+      </div>
+      <input type="submit" class="btn btn-outline-primary" name="" value="Log in">
+    </form>
+  </div>
+
+</div>
+{% else %}
+<div class="container">
+  <div class="jumbotron">
+    <form class="from-group" action="{% url 'cloneapp:question_create' %}" method="post">
+      {% csrf_token %}
+    <div class="form-group">
+      <label for="question_ti">Question</label>
+      <input type="text" name="question_tit" placeholder="Question Here">
+    </div>
+      <input class="btn btn-outline-primary" type="submit" name="" value="Post">
+    </form>
+  </div>
+
+</div>
+{% endif %}
+{% for list in question_list %}
+<div class="container">
+<div class="jumbotron">
+  <a href="{% url 'cloneapp:question_detail' pk=list.pk %}"><h3 class="sign text-dark"><strong>{{ list.question_title}}</strong></h3></a>
+  <a href="{% url 'cloneapp:userinfo' pk=list.author.pk %}"><h4 class="text-right"><strong>@{{ list.author.user_p.username }}</strong><h4><img class="img-thumbnail float-right rounded-circle" src="{{ list.author.image_field.url }}" alt="@{{ list.author.user_p.username }}" width=100 height="100"></a>
+  <a class="btn btn-primary"href="{% url 'cloneapp:question_detail' pk=list.pk %}">Answers<span class="badge badge-light">{{ list.question_ans.count }}</span></a>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

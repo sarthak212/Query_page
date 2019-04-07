@@ -1,0 +1,53 @@
+body{
+  background: url("images/back.jpeg") repeat;
+}
+#id_email,#id_password,input[type=text]{
+      width: 100%;
+      padding: 5px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+}
+#id_image_field{
+  margin:8px 0;
+  padding:5px 20px;
+  border-radius:5px;
+}
+#button{
+   background-color: #4CAF50;
+   width:20%;
+   border-radius: 20px;
+   margin-left:350px;
+}
+.jumbo{
+  background-color: #BAD7E3;
+}
+.an{
+  margin:40px;
+}
+.cen{
+  font-family: 'Merienda', cursive;
+  margin-left:430px;
+  margin-top:80px;
+}
+label,#button{
+  font-size: 25px;
+  font-family: 'Chela One', cursive;
+}
+.sign{
+  font-family: 'Josefin Sans', sans-serif;
+}
+#answero{
+  border-radius: 30px;
+  width: 75%;
+  margin-left: 100px;
+}
+#submit_form{
+  margin-left: 600px;
+}
+.wq{
+  margin-left: 150px;
+  margin-top: 150px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+{% load extra_tags %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Base</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chela+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="nav navbar-expand-sm bg-dark navbar-dark fixed-top">
+      <div class="navbar-brand">
+      <a class="navbar-brand " href="{% url 'cloneapp:question_list' %}"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8UYVQPzyKYSQ_79-zmwNcmn9lPmN_JU8jb5Ie0Nn9qGU0y0xh" alt="Starhack" width:"30" height="30" ></a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" date-target="#collapsecls"><span class="navbar-toggler-icon" ></span></button>
+      <div class="collapse navbar-collapse" id="collapsecls">
+        <ul class="navbar-nav navbar-left">
+          <li class="nav-item"><a class="nav-link sign" href="{% url 'cloneapp:registration' %}"><i class="fas fa-users"></i>Sign up</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'cloneapp:draft_question' %}"><i class="fas fa-clipboard-list"></i></a></li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'cloneapp:logout' %}"><i class="fas fa-sign-out-alt"></i><img  src="{{ user|imageurl }}" alt="{{ user.use_info_set.image_field.url }}" class=" image-responsive rounded-circle" style="width:40px;"></a></li>
+          {% endif %}
+          </ul>
+      </div>
+    </nav>
+    {% block a %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  </body>
+</html>
